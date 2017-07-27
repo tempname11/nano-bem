@@ -1,5 +1,5 @@
 /* @flow */
-const remap = (mapping, key) => {
+function remap(mapping, key) {
   if (!mapping) return key;
   const result = mapping[key];
   if (process.env.NODE_ENV === 'development') {
@@ -8,7 +8,7 @@ const remap = (mapping, key) => {
   return result;
 }
 
-const go = (name, mods, mapping) => {
+function go(name, mods, mapping) {
   const baseName = remap(mapping, name);
   if (!mods) return baseName;
   const keys = Object.keys(mods);
@@ -30,12 +30,16 @@ const go = (name, mods, mapping) => {
   return classNames.join(' ');
 };
 
+/*::
 type Elem = string;
-type Mods = { [string]: string | boolean };
+type Mods = { [string]: string | boolean | void | null };
+*/
 
-export default
-  (blockName: string, mapping?: { [string]: string }) =>
-  (_1?: Elem | Mods, _2?: Mods) =>
-    typeof _1 === 'string'
-      ? go(blockName + '__' + _1, _2, mapping)
-      : go(blockName, _1, mapping);
+module.exports =
+  function (blockName/*: string*/, mapping/*: ?{ [string]: string } */) {
+    return function (_1/*: ?(Elem | Mods) */, _2/*: ?Mods */) {
+      return typeof _1 === 'string'
+        ? go(blockName + '__' + _1, _2, mapping)
+        : go(blockName, _1, mapping);
+    }
+  }
