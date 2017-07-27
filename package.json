@@ -1,6 +1,6 @@
 {
   "name": "nano-bem",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A tiny library to generate BEM-style class names.",
   "main": "index.js",
   "repository": "https://github.com/tempname11/nano-bem",
