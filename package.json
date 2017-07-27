@@ -1,0 +1,9 @@
+{
+  "name": "nano-bem",
+  "version": "1.0.0",
+  "description": "A tiny library to generate BEM-style class names.",
+  "main": "index.js",
+  "repository": "https://github.com/tempname11/nano-bem",
+  "author": "Vladimir Semyonov <tempname011@gmail.com>",
+  "license": "MIT"
+}
