@@ -16,7 +16,7 @@ function go(name, mods, mapping) {
   const classNames = new Array(n);
   classNames[0] = baseName;
   for (let i = 1; i < n; i++) {
-    const key = keys[i];
+    const key = keys[i - 1];
     const value = mods[key];
     classNames[i] = remap(
       mapping,
