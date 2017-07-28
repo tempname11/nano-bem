@@ -1,7 +1,7 @@
 /* @flow */
 function remap(mapping, key) {
   if (!mapping) return key;
-  const result = mapping[key];
+  var result = mapping[key];
   if (process.env.NODE_ENV === 'development') {
     console.error(`Key ${key} not found in className mapping:`, mapping);
   }
@@ -9,15 +9,16 @@ function remap(mapping, key) {
 }
 
 function go(name, mods, mapping) {
-  const baseName = remap(mapping, name);
+  var baseName = remap(mapping, name);
   if (!mods) return baseName;
-  const keys = Object.keys(mods);
-  const n = keys.length + 1;
-  const classNames = new Array(n);
+  var keys = Object.keys(mods);
+  var n = keys.length + 1;
+  var classNames = new Array(n);
   classNames[0] = baseName;
-  for (let i = 1; i < n; i++) {
-    const key = keys[i - 1];
-    const value = mods[key];
+  var i;
+  for (i = 1; i < n; i++) {
+    var key = keys[i - 1];
+    var value = mods[key];
     classNames[i] = remap(
       mapping,
       typeof value === 'string'
