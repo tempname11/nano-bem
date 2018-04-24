@@ -2,7 +2,7 @@
 function remap(mapping, key) {
   if (!mapping) return key;
   var result = mapping[key];
-  if (process.env.NODE_ENV === 'development') {
+  if (!result && process.env.NODE_ENV === 'development') {
     console.error('Key "' + key + '" not found in className mapping:', mapping);
   }
   return result;
