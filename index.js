@@ -19,14 +19,12 @@ function go(name, mods, mapping) {
   for (i = 1; i < n; i++) {
     var key = keys[i - 1];
     var value = mods[key];
-    classNames[i] = remap(
+    classNames[i] = value ? remap(
       mapping,
       typeof value === 'string'
         ? [name, key, value].join('_')
-        : value
-          ? name + '_' + key
-          : ''
-    );
+        : name + '_' + key
+    ) : '';
   }
   return classNames.join(' ');
 };
