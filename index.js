@@ -34,11 +34,18 @@ type Elem = string;
 type Mods = { [string]: string | boolean | void | null };
 */
 
-module.exports =
-  function (blockName/*: string*/, mapping/*: ?{ [string]: string } */) {
-    return function (_1/*: ?(Elem | Mods) */, _2/*: ?Mods */) {
-      return typeof _1 === 'string'
-        ? go(blockName + '__' + _1, _2, mapping)
-        : go(blockName, _1, mapping);
-    }
+function block(blockName/*: string*/, mapping/*: ?{ [string]: string } */) {
+  return function (_1/*: ?(Elem | Mods) */, _2/*: ?Mods */) {
+    return typeof _1 === 'string'
+      ? go(blockName + '__' + _1, _2, mapping)
+      : go(blockName, _1, mapping);
   }
+}
+
+var join = [].join;
+function mix(/*:: ...args: string[] */) {
+  return join.call(arguments, ' ');
+}
+
+exports.block = block;
+exports.mix = mix;
